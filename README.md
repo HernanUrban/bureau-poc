@@ -17,5 +17,13 @@ Compilacion del proyecto
 
 1. Instalar rabbitmq (docker image)
 
+```
+docker run -d --hostname bureau-poc-rabbit --name bureau-poc-rabbit -p 8585:15672 -p 5672:5672 rabbitmq:3-management
+```  
+Si el puerto 8585 esta en uso cambiar por algun puerto libre: `-p 8585:15672`  
+El plugin quedara accesible en `http://localhost:8585` (user: guest, pass: guest)
+
+![rabbit-manager](images/rabbit-manager.png)
+
 ### Arquitectura  
 ![bureau-service](images/bureau-componentes.png)
