@@ -22,14 +22,19 @@ $ java -jar bureau-service-0.0.1-SNAPSHOT.jar
 ```
 Publicar mensaje  
 ```sh
-curl --header "Content-Type: application/json" \
+$ curl --header "Content-Type: application/json" \
   --request POST \
-  --data '{"id":"1","payload":"prueba"}' \
+  --data '{"id": "3d7acfc2-ff58-11e8-8eb2-f2801f1b9fd1","cuit":"20341251220", "payload" : {"var1" : "someValue","var2" : "someValue2"}}' \
   http://localhost:8080/bureau/sendMessage
 ```
 En la consola de *bureau-service* se vera que el mensaje ha sido procesado:
 ```console
-Handling bureau message - id: 1, payload: prueba
+Handling bureau message - id: 3d7acfc2-ff58-11e8-8eb2-f2801f1b9fd1, cuit: 20341251220, payload: {var1=someValue, var2=someValue2}
+Accessing Nosis for id: 3d7acfc2-ff58-11e8-8eb2-f2801f1b9fd1, cuit: 20341251220
+```
+Si se emite un segundo llamado para el mismo request dentro de los primeros 10 segs (ver ttl en application.properties), la informacion sera obtenida desde Redis (cache). Por lo que en el log no vera el mensaje de acceso a Nosis:
+```console
+Handling bureau message - id: 3d7acfc2-ff58-11e8-8eb2-f2801f1b9fd1, cuit: 20341251220, payload: {var1=someValue, var2=someValue2}
 ```
 
 ### Prerequisitos
