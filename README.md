@@ -34,7 +34,8 @@ Handling bureau message - id: 1, payload: prueba
 
 ### Prerequisitos
 
-1. Instalar rabbitmq (docker image)
+1. RabbitMQ
+Instalar imagen docker:
 
 ```sh
 docker run -d --hostname bureau-poc-rabbit --name bureau-poc-rabbit -p 8585:15672 -p 5672:5672 rabbitmq:3-management
@@ -44,6 +45,12 @@ El plugin quedara accesible en `http://localhost:8585` _(user: guest, pass: gues
 
 ![rabbit-manager](images/rabbit-manager.png)
 
+2. Redis
+Instalar imagen docker:
+
+```sh
+docker run --name bureau-redis -p 6379:6379 -d redis
+```
 
 
 ### Arquitectura  

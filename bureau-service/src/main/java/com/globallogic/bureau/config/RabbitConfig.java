@@ -101,7 +101,7 @@ public class RabbitConfig {
     @Bean
     RetryOperationsInterceptor interceptor() {
         return RetryInterceptorBuilder.stateless()
-                .maxAttempts(5)
+                .maxAttempts(3)
                 .backOffOptions(1000, 3, 60000)
                 .recoverer(new RejectAndDontRequeueRecoverer())
                 .build();
